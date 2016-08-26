@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: check if variables are defined
+      fail: msg='define vars - package_state'
+      when: package_state is undefined or nvidia_driver is undefined
+
+    - name: update apt cache
+      apt: update_cache=yes
+
+    - name: install various libraries and packages
+      apt: name={{ item }} state={{ package_state }}
+      with_items:
+        - python-numpy
+        - python-scipy
+        - python-nose
+        - libopenblas-dev

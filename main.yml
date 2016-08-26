@@ -1,9 +1,11 @@
 ---
 
-- include: 01-os-setup.yml
-- include: 02-nvidia.yml
-- include: 03-tf.yml
-- include: 04-misc.yml
+- include: 10-os-setup.yml
+- include: 20-nvidia.yml
+- include: 30-libs.yml
+- include: 40-tensorflow.yml
+- include: 50-theano.yml
+- include: 80-misc.yml
 
 - hosts: all
   become: yes
