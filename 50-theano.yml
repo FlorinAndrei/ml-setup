@@ -4,7 +4,7 @@
   tasks:
     - name: check if variables are defined
       fail: msg='define vars - package_state'
-      when: package_state is undefined
+#      when: package_state is undefined
 
     - name: install Theano
       pip: name=Theano state={{ package_state }}
