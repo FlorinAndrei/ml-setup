@@ -6,13 +6,43 @@
       fail: msg='define vars - package_state'
       when: package_state is undefined or nvidia_driver is undefined
 
+    - name: add Webup8team Java repository
+      apt_repository: state=present repo='ppa:webupd8team/java'
+
+    - name: add Bazel repository key
+      apt_key: url='https://storage.googleapis.com/bazel-apt/doc/apt-key.pub.gpg' state=present
+
+    - name: add Bazel repository
+      apt_repository: repo='deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8' state=present
+
     - name: update apt cache
       apt: update_cache=yes
+
+    - name: check if the Oracle license is already accepted
+      shell: debconf-get-selections | grep "oracle-java8-installer[[:space:]]shared/accepted-oracle-license-v1-1[[:space:]]select[[:space:]]true" | wc -l
+      register: oracle_license
+      # The above command changes nothing, so don't claim a state change here, ever.
+      changed_when: False
+
+    - name: accept Oracle license terms
+      shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+      when: oracle_license.stdout != "1"
+
+    - name: install Oracle JDK 8
+      apt: state=present pkg=oracle-java8-installer state={{ package_state }}
 
     - name: install various libraries and packages
       apt: name={{ item }} state={{ package_state }}
       with_items:
-        - python-numpy
-        - python-scipy
-        - python-nose
         - libopenblas-dev
+        - liblapack-dev
+        - graphviz
+        - graphviz-dev
+
+    - name: install various Python libraries
+      pip: name={{ item }} state={{ package_state }}
+      with_items:
+        - numpy
+        - scipy
+        - nose
+        - pydot-ng

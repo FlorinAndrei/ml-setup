@@ -32,6 +32,7 @@
         - wget
         - htop
         - mc
+        - debconf-utils
 
     - name: run apt-get dist-upgrade
       apt: upgrade=dist

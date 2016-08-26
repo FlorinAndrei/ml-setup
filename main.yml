@@ -2,7 +2,7 @@
 
 - include: 10-os-setup.yml
 - include: 20-nvidia.yml
-#- include: 30-libs.yml
+- include: 30-libs.yml
 - include: 40-tensorflow.yml
 - include: 50-theano.yml
 - include: 80-misc.yml
