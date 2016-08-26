@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: check if variables are defined
+      fail: msg='define vars - package_state'
+      when: package_state is undefined
+
+    - name: Enable the Octave repository
+      apt_repository: repo='ppa:octave/stable'
+
+    - name: Enable the R repository
+      apt_repository: repo='ppa:marutter/rrutter'
+
+    - name: update apt cache
+      apt: update_cache=yes
+
+    - name: Install Octave
+      apt: name={{ item }} state={{ package_state }}
+      with_items:
+        - octave
+
+    - name: Install R
+      apt: name={{ item }} state={{ package_state }}
+      with_items:
+        - r-base

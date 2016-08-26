@@ -1,0 +1,56 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: check if variables are defined
+      fail: msg='define vars - package_state'
+      when: package_state is undefined or nvidia_driver is undefined
+
+    - name: add Nvidia drivers apt repository
+      apt_repository: repo='ppa:graphics-drivers/ppa' update_cache=yes
+
+    - name: install the ubuntu-drivers-common package
+      apt: name=ubuntu-drivers-common state={{ package_state }}
+
+    - name: download CUDA (may take a long time)
+      get_url: url={{ cuda_url }} dest=/root/{{ cuda_file }} force=no mode=0644
+      register: get_cuda
+
+    - name: install CUDA (logs in /tmp/cuda*)
+      shell: sh /root/{{ cuda_file }} --silent --driver --toolkit --samples --verbose
+      when: get_cuda|changed
+
+    - name: download and install the Nvidia driver and dependencies
+      #shell: ubuntu-drivers autoinstall
+      apt: name={{ nvidia_driver }} state={{ package_state }}
+      #when: "package_state == 'latest'"
+
+    - name: download cuDNN
+      get_url: url={{ cudnn_url }} dest=/root/{{ cudnn_file }} force=no mode=0644
+      register: get_cudnn
+
+    - name: extract cuDNN
+      unarchive: src=/root/{{ cudnn_file }} dest=/root/ copy=no
+      when: get_cudnn|changed
+
+    - name: copy cuDNN header file(s)
+      shell: cp /root/cuda/include/cudnn.h /usr/local/cuda/include/
+      when: get_cudnn|changed
+
+    - name: copy cuDNN library files
+      shell: cp /root/cuda/lib64/libcudnn* /usr/local/cuda/lib64/
+      when: get_cudnn|changed
+
+    - name: make sure cuDNN files have the right permissions
+      shell: chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+      when: get_cudnn|changed
+
+    - name: create CUDA_HOME and other variables
+      template: src=cuda-home dest=/etc/profile.d/cuda-home.sh owner=root mode=0644
+      when: get_cudnn|changed
+
+    - name: install various useful libraries and packages
+      apt: name={{ item }} state={{ package_state }}
+      with_items:
+        - freeglut3-dev
+        - libglu1-mesa-dev

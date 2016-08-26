@@ -1,0 +1,43 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: stop if variables are undefined
+      fail: msg='define vars - package_state'
+      when: package_state is undefined
+
+    - name: update apt cache
+      apt: update_cache=yes
+
+    - name: install kernel headers and build-essential
+      apt: name={{ item }} state={{ package_state }}
+      with_items:
+        - linux-headers-{{ ansible_kernel }}
+        - build-essential
+        - dkms
+
+    - name: install other useful packages
+      apt: name={{ item }} state={{ package_state }}
+      with_items:
+        - cmake
+        - g++
+        - gfortran
+        - git
+        - pkg-config
+        - python-dev
+        - python-pip
+        - bc
+        - gnuplot
+        - software-properties-common
+        - wget
+        - htop
+        - mc
+
+    - name: run apt-get dist-upgrade
+      apt: upgrade=dist
+      when: "package_state == 'latest'"
+      register: upgrade_contents
+
+    - name: if kernel was upgraded in the dist-upgrade step, reboot
+      shell: reboot
+      when: "upgrade_contents is defined and upgrade_contents.stdout.find('linux-image') != -1"

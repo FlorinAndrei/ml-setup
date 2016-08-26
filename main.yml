@@ -1,0 +1,13 @@
+---
+
+- include: 01-os-setup.yml
+- include: 02-nvidia.yml
+- include: 03-tf.yml
+- include: 04-misc.yml
+
+- hosts: all
+  become: yes
+  tasks:
+    - name: FINAL MESSAGE
+      debug: var="final_msg.split('\n')"
+      when: "package_state == 'latest'"

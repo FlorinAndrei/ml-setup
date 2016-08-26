@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: check if variables are defined
+      fail: msg='define vars - package_state'
+      when: package_state is undefined
+
+    - name: download TensorFlow
+      get_url: url=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl dest=/root/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl force=no mode=0644
+      register: get_tensorflow
+
+    - name: install TensorFlow
+      pip: name=/root/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl state={{ package_state }}
+      when: get_tensorflow|changed
