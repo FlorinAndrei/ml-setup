@@ -46,3 +46,4 @@
         - scipy
         - nose
         - pydot-ng
+        - nose-parameterized
