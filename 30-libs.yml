@@ -49,3 +49,4 @@
         - pydot-ng
         - nose-parameterized
         - matplotlib
+        - h5py
