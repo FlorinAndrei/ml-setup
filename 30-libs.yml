@@ -49,4 +49,5 @@
         - pydot-ng
         - nose-parameterized
         - matplotlib
+        - Cython
         - h5py
