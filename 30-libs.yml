@@ -47,3 +47,4 @@
         - nose
         - pydot-ng
         - nose-parameterized
+        - matplotlib
