@@ -13,3 +13,8 @@
     - name: install TensorFlow
       pip: name=/root/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl state={{ package_state }}
       when: get_tensorflow|changed
+
+    - name: install extra libs for TF
+      pip: name={{ item }} state={{ package_state }}
+      with_items:
+        - tflearn
