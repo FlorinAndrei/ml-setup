@@ -38,6 +38,7 @@
         - liblapack-dev
         - graphviz
         - graphviz-dev
+        - libfreetype6-dev
 
     - name: install various Python libraries
       pip: name={{ item }} state={{ package_state }}
