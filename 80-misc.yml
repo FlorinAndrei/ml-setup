@@ -24,3 +24,7 @@
       apt: name={{ item }} state={{ package_state }}
       with_items:
         - r-base
+
+    - name: download and install RStudio
+      apt: deb=https://download1.rstudio.org/rstudio-0.99.903-amd64.deb state={{ package_state }}
+
