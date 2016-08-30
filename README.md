@@ -86,13 +86,15 @@ Switch to the repo folder:
 cd ml-setup
 ```
 
+Save your file and exit all apps - a reboot may happen during the process, so be prepared.
+
 Run the installer:
 
 ```
 ansible-playbook -i inventory install.yml
 ```
 
-The installer will first apply all the OS updates and patches. If the kernel is updated, it will exit and ask you to reboot. **YOU MUST REBOOT AT THIS POINT!** I could have made the installer reboot the system for you, but that's not the polite thing to do.
+The installer will first apply all the OS updates and patches. If the kernel is updated, **IT WILL REBOOT YOUR MACHINE!!!** This step is not optional, so be prepared.
 
 After the reboot, get back in the game:
 
