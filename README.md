@@ -78,7 +78,7 @@ git clone https://github.com/FlorinAndrei/ml-setup.git
 
 ### Install ML software
 
-Read the comments in ml-setup/group_vars/all and edit your ~/.bash_profile accordingly. Logout, then log back in.
+Read the comments in `ml-setup/group_vars/all` and edit your `~/.bash_profile` accordingly. Logout, then log back in.
 
 Switch to the repo folder:
 
@@ -108,14 +108,14 @@ At the end you should at least log out, then log back in - although to make sure
 
 Every time you run `ansible-playbook -i inventory install.yml` in the repo folder from now on, it will replay the process. If new packages are available, it will install the updated versions.
 
-If you want to keep existing package versions (for stability reasons), you must edit `group_vars/all` and change `package_state` from `latest` to `present`. When you do that, subsequent runs will simply correct missing packages (uninstalled by mistake), but will not update existing packages. I recommend editing `package_state` to avoid surprises in the future. You can always update individual packages if you absolutely have to:
+If you want to keep existing package versions (for stability reasons), you must edit `~/.bash_profile` and change `ansible_package_state` from `latest` to `present`. When you do that, subsequent runs will simply correct missing packages (uninstalled by mistake), but will not update existing packages. I recommend editing `ansible_package_state` to avoid surprises in the future. You can always update individual packages if you absolutely have to:
 
 ```
 apt-get update
 apt-get upgrade <package-name>
 ```
 
-If you change `package_state` to `present`, you should also never run `apt-get upgrade` since it does the same thing as `package_state: 'latest'` (apply all available upgrades). You should also disable the GUI update reminder on the desktop.
+If you change `ansible_package_state` to `present`, you should also never run `apt-get upgrade` since it does the same thing as `latest` (apply all available upgrades). You should also disable the GUI update reminder on the desktop.
 
 ## Maintenance
 
