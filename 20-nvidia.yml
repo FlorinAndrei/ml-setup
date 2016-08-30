@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: check if variables are defined
-      fail: msg='define vars - package_state'
+      fail: msg='define vars - package_state, nvidia_driver'
       when: package_state is undefined or nvidia_driver is undefined
 
     - name: add Nvidia drivers apt repository
