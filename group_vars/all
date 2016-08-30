@@ -1,9 +1,19 @@
 ---
+
+########################################
+#
+# Check the bash_profile_example file in this repo
+# for an example of the changes you need to make on
+# ~/.bash_profile in your account.
+# Also read the comments below.
+#
+########################################
+
 # If 'present', existing package versions are never upgraded.
 # If 'latest',  existing package versions are upgraded if upgrades are available.
 # Edit ~/.bash_profile and add:
 # export ansible_package_state="latest"
-# After the first full run, change it to "present"
+# After the first full Ansible run, change this variable to "present"
 package_state: "{{ lookup('env','ansible_package_state') }}"
 
 # Go on http://www.geforce.com/drivers and search for a stable driver for
