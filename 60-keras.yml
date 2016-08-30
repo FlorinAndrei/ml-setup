@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: check if variables are defined
+      fail: msg='define vars - package_state'
+      when: package_state is undefined
+
+    - name: install Keras
+      pip: name=keras state={{ package_state }}
