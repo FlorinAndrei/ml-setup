@@ -26,6 +26,7 @@
         - pkg-config
         - python-dev
         - python-pip
+        - python-wheel
         - bc
         - gnuplot
         - software-properties-common
