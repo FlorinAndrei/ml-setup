@@ -13,7 +13,9 @@ Apps and libraries installed:
 * CUDA libraries
 * the cuDNN library
 * TensorFlow
-* ...and other things useful for ML
+* Theano
+* Keras
+* ... etc ...
 
 The process is reproducible. The installer is idempotent - repeating the main install command at any later time will simply correct any deviations (uninstalled packages) and bring the system back to its desired state.
 
