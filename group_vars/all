@@ -1,19 +1,21 @@
 ---
 # If 'present', existing package versions are never upgraded.
 # If 'latest',  existing package versions are upgraded if upgrades are available.
-# By default, this variable is commented out.
-# Uncomment it for the first run.
-# Then change it to 'present' for all subsequent runs (unless you do an upgrade on purpose).
-#package_state: 'latest'
-#package_state: 'present'
+# Edit ~/.bash_profile and add:
+# export ansible_package_state="latest"
+# After the first full run, change it to "present"
+package_state: "{{ lookup('env','ansible_package_state') }}"
 
 # Go on http://www.geforce.com/drivers and search for a stable driver for
-# Linux 64 bit and your graphics card.
-# Then input the major version number below and uncomment.
-#nvidia_driver: 'nvidia-367'
+# Linux 64 bit and your graphics card. Let's say it's nvidia-367.
+# Edit ~/.bash_profile and add:
+# export ansible_nvidia_driver="nvidia-367"
+nvidia_driver: "{{ lookup('env','ansible_nvidia_driver') }}"
 
 # the user account used for most ML/DS software
-#main_user: 'jdoe'
+# Edit ~/.bash_profile and add:
+# export ansible_main_user="my-preferred-username"
+main_user: "{{ lookup('env','ansible_main_user') }}"
 
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
 
