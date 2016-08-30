@@ -78,6 +78,8 @@ git clone https://github.com/FlorinAndrei/ml-setup.git
 
 ### Install ML software
 
+Read the comments in ml-setup/group_vars/all and edit your ~/.bash_profile accordingly. Logout, then log back in.
+
 Switch to the repo folder:
 
 ```
