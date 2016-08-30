@@ -13,7 +13,7 @@
 #nvidia_driver: 'nvidia-367'
 
 # the user account used for most ML/DS software
-#main_user: 'vagrant'
+#main_user: 'jdoe'
 
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
 
