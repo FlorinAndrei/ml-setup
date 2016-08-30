@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: check if variables are defined
-      fail: msg='define vars - package_state'
+      fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
       when: package_state is undefined
 
     - name: Enable the Octave repository
