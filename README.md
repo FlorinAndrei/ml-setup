@@ -1,6 +1,6 @@
 # ml-setup
 
-*Trivially easy installation of machine learning and data science software*
+*Simple installation of machine learning and data science software*
 
 The goal is to make the process of installing ML software on Linux dead easy to perform. Instead of maintaining some esoteric list of procedures that need to be peformed manually, this process is simple and fully automated. If the hardware is ready, you could install dozens of systems like this in a day - or thousands if you do it remotely.
 
