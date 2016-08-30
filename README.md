@@ -8,10 +8,11 @@ Apps and libraries installed:
 
 * Python 2.7
 * Octave
-* R
+* R, RStudio
 * Nvidia graphics drivers
 * CUDA libraries
 * the cuDNN library
+* Lua
 * TensorFlow
 * Theano
 * Keras
