@@ -4,12 +4,16 @@
 # By default, this variable is commented out.
 # Uncomment it for the first run.
 # Then change it to 'present' for all subsequent runs (unless you do an upgrade on purpose).
-package_state: 'latest'
+#package_state: 'latest'
+#package_state: 'present'
 
-nvidia_driver: 'nvidia-367'
+# Go on http://www.geforce.com/drivers and search for a stable driver for
+# Linux 64 bit and your graphics card.
+# Then input the major version number below and uncomment.
+#nvidia_driver: 'nvidia-367'
 
 # the user account used for most ML/DS software
-main_user: 'vagrant'
+#main_user: 'vagrant'
 
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
 
