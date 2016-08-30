@@ -7,4 +7,4 @@
       when: package_state is undefined
 
     - name: install Keras
-      pip: name=keras state={{ package_state }}
+      pip: name=Keras state={{ package_state }}
