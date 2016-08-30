@@ -3,8 +3,8 @@
   become: yes
   tasks:
     - name: stop if variables are undefined
-      fail: msg='define vars - package_state'
-      when: package_state is undefined
+      fail: msg='check group_vars/all and fill in the missing variables'
+      when: package_state is undefined or nvidia_driver is undefined or main_user is undefined
 
     - name: update apt cache
       apt: update_cache=yes
