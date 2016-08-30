@@ -23,6 +23,7 @@
         - g++
         - gfortran
         - git
+        - swig
         - pkg-config
         - python-dev
         - python-pip
