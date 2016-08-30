@@ -4,7 +4,7 @@
         IMPORTANT!!! IMPORTANT!!! IMPORTANT!!!
 
         If this is your first successful run,
-        you may or may not want to edit group_vars/all
+        you may or may not want to edit ~/.bash_profile
         and change package_state to 'present'
         to prevent packages being updated involuntarily
         during subsequent runs.
