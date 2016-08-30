@@ -7,7 +7,7 @@
       when: package_state is undefined or main_user is undefined
     
     - name: check if {{ main_user }} account is created
-      shell: shell /usr/bin/getent passwd {{ main_user }} | /usr/bin/wc -l | tr -d ' '
+      shell: /usr/bin/getent passwd {{ main_user }} | /usr/bin/wc -l | tr -d ' '
       register: main_user_exists
       failed_when: "'0' in main_user_exists.stdout"
 
