@@ -14,6 +14,9 @@
     - name: install Theano
       pip: name=Theano state={{ package_state }}
     
+    - name: ensure .theanorc exists
+      file: path=/home/{{ main_user }}/.theanorc state=touch owner={{ main_user }}
+    
     - name: ensure [nvcc] exists in ~/.theanorc
       lineinfile: dest=/home/{{ main_user }}/.theanorc line="[nvcc]" state=present
 
