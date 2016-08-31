@@ -37,7 +37,10 @@
         - debconf-utils
     
     - name: autoremove unused packages
-      apt: autoremove=yes
+      shell: apt-get -y autoremove
+    
+    - name: autoremove unused packages again
+      shell: apt-get -y autoremove
 
     - name: run apt-get dist-upgrade
       apt: upgrade=dist
