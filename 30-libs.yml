@@ -54,3 +54,4 @@
         - matplotlib
         - Cython
         - h5py
+        - Pillow
