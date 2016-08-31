@@ -20,6 +20,8 @@
     - name: ensure [nvcc] exists in ~/.theanorc
       lineinfile: dest=/home/{{ main_user }}/.theanorc line="[nvcc]" state=present
 
-# TODO: add the arch=sm flag to .theanorc
+# TODO: .theanorc
+#[nvcc]
+#flags = -arch=sm_30
 
 # THEANO_FLAGS=device=gpu0 python check1.py
