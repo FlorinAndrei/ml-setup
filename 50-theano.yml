@@ -2,9 +2,7 @@
 - hosts: all
   become: yes
   tasks:
-    - name: check if variables are defined
-      fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
-      when: package_state is undefined or main_user is undefined
+    - include: checks.yml
     
     - name: check if {{ main_user }} account is created
       shell: /usr/bin/getent passwd {{ main_user }} | /usr/bin/wc -l | tr -d ' '
