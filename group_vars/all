@@ -4,27 +4,14 @@
 #
 # Check the bash_profile_example file in this repo
 # for an example of the changes you need to make on
-# ~/.bash_profile in your account.
-# Also read the comments below.
+# ~/.bash_profile in your account to define the variables used below.
 #
 ########################################
 
-# If 'present', existing package versions are never upgraded.
-# If 'latest',  existing package versions are upgraded if upgrades are available.
-# Edit ~/.bash_profile and add:
-# export ansible_package_state="latest"
-# After the first full Ansible run, change this variable to "present"
 package_state: "{{ lookup('env','ansible_package_state') }}"
 
-# Go on http://www.geforce.com/drivers and search for a stable driver for
-# Linux 64 bit and your graphics card. Let's say it's nvidia-367.
-# Edit ~/.bash_profile and add:
-# export ansible_nvidia_driver="nvidia-367"
 nvidia_driver: "{{ lookup('env','ansible_nvidia_driver') }}"
 
-# the user account used for most ML/DS software
-# Edit ~/.bash_profile and add:
-# export ansible_main_user="my-preferred-username"
 main_user: "{{ lookup('env','ansible_main_user') }}"
 
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
