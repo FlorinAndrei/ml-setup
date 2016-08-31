@@ -2,9 +2,7 @@
 - hosts: all
   become: yes
   tasks:
-    - name: check if variables are defined
-      fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
-      when: package_state is undefined
+    - include: checks.yml
 
     - name: Enable the Octave repository
       apt_repository: repo='ppa:octave/stable'
