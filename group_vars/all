@@ -29,6 +29,9 @@ main_user: "{{ lookup('env','ansible_main_user') }}"
 
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
 
+os_distro_name: 'Ubuntu'
+os_distro_version: '14.04'
+
 cuda_file: "cuda_7.5.18_linux.run"
 cuda_url: "http://developer.download.nvidia.com/compute/cuda/7.5/Prod/local_installers/{{ cuda_file }}"
 
