@@ -17,7 +17,7 @@
         - dkms
 
     - name: install other useful packages
-      apt: name={{ item }} state={{ package_state }}
+      apt: name={{ item }} autoremove=yes state={{ package_state }}
       with_items:
         - cmake
         - g++
