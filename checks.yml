@@ -4,7 +4,7 @@
   when: ansible_distribution != "{{ os_distro_name }}" or ansible_distribution_version != "{{ os_distro_version }}"
 
 - name: stop if variables are undefined
-  fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
+  fail: msg='edit your ~/.bash_profile as shown in bash_profile_example in this repo'
   when: package_state is undefined or package_state == '' or nvidia_driver is undefined or nvidia_driver == '' or main_user is undefined or main_user == ''
 
 - name: var check
