@@ -17,7 +17,7 @@
         - dkms
 
     - name: install other useful packages
-      apt: name={{ item }} autoremove=yes state={{ package_state }}
+      apt: name={{ item }} state={{ package_state }}
       with_items:
         - cmake
         - g++
@@ -35,6 +35,9 @@
         - htop
         - mc
         - debconf-utils
+    
+    - name: autoremove unused packages
+      apt: autoremove=yes
 
     - name: run apt-get dist-upgrade
       apt: upgrade=dist
