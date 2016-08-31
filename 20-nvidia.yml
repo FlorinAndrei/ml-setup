@@ -2,9 +2,7 @@
 - hosts: all
   become: yes
   tasks:
-    - name: check if variables are defined
-      fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
-      when: package_state is undefined or nvidia_driver is undefined
+    - include: checks.yml
 
     - name: add Nvidia drivers apt repository
       apt_repository: repo='ppa:graphics-drivers/ppa' update_cache=yes
