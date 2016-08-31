@@ -1,0 +1,7 @@
+---
+- name: var check
+  fail: msg="0{{ package_state }}0"
+
+- name: stop if variables are undefined
+  fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
+  when: package_state is undefined or nvidia_driver is undefined or main_user is undefined
