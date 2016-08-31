@@ -2,9 +2,7 @@
 - hosts: all
   become: yes
   tasks:
-    - name: check if variables are defined
-      fail: msg='check comments in group_vars/all and edit ~/.bash_profile'
-      when: package_state is undefined
+    - include: checks.yml
 
     - name: download TensorFlow
       get_url: url=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl dest=/root/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl force=no mode=0644
