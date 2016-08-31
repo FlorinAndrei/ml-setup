@@ -1,4 +1,8 @@
 ---
+- name: OS version check
+  fail: msg="This should run on {{ os_distro_name }} {{ os_distro_version }}"
+  when: ansible_distribution != {{ os_distro_name }} or ansible_distribution_version != {{ os_distro_version }}
+
 - name: var check
   fail: msg="0{{ package_state }}0"
 
