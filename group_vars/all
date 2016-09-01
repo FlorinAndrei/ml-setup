@@ -19,8 +19,11 @@ final_msg: "{{ lookup('file', 'final_msg.txt') }}"
 os_distro_name: 'Ubuntu'
 os_distro_version: '16.04'
 
-cuda_file: "cuda_7.5.18_linux.run"
-cuda_url: "http://developer.download.nvidia.com/compute/cuda/7.5/Prod/local_installers/{{ cuda_file }}"
+cuda_file: "cuda_8.0.27_linux.run"
+cuda_url: "https://s3-us-west-1.amazonaws.com/florinandrei-ml-setup/{{ cuda_file }}"
 
-cudnn_file: "cudnn-7.0-linux-x64-v4.0-prod.tgz"
+cuda_patch1_file: "cuda_8.0.27.1_linux.run"
+cuda_patch1_url: "https://s3-us-west-1.amazonaws.com/florinandrei-ml-setup/{{ cuda_patch1_file }}"
+
+cudnn_file: "cudnn-8.0-linux-x64-v5.1.tgz"
 cudnn_url: "https://s3-us-west-1.amazonaws.com/florinandrei-ml-setup/{{ cudnn_file }}"

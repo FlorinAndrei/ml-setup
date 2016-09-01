@@ -39,9 +39,9 @@
         - libfreetype6-dev
         - libhdf5-dev
         - bazel
-        - lua5.2
+        - lua5.3
 
-    - name: install various Python libraries
+    - name: install various Python libraries from pip
       pip: name={{ item }} state={{ package_state }}
       with_items:
         - numpy

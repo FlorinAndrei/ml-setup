@@ -5,7 +5,7 @@ export ansible_package_state="latest"
 
 # Go on http://www.geforce.com/drivers and search for a stable driver for
 # Linux 64 bit and your graphics card. Example below assumes it's nvidia-367.
-export ansible_nvidia_driver="nvidia-367"
+export ansible_nvidia_driver="nvidia-370"
 
 # the user account used on this machine for most ML/DS software
 export ansible_main_user="jdoe"

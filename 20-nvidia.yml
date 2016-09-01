@@ -11,20 +11,23 @@
       apt: name=ubuntu-drivers-common state={{ package_state }}
 
     - name: download CUDA (may take a long time)
-      get_url: url={{ cuda_url }} dest=/root/{{ cuda_file }} force=no mode=0644
+      get_url: url={{ cuda_url }} dest=/root/{{ cuda_file }} force=no
       register: get_cuda
 
     - name: install CUDA (logs in /tmp/cuda*)
-      shell: sh /root/{{ cuda_file }} --silent --driver --toolkit --samples --verbose
+      shell: sh /root/{{ cuda_file }} --silent --toolkit --samples --verbose --override
       when: get_cuda|changed
 
-    - name: download and install the Nvidia driver and dependencies
-      #shell: ubuntu-drivers autoinstall
-      apt: name={{ nvidia_driver }} state={{ package_state }}
-      #when: "package_state == 'latest'"
+    - name: downlod CUDA patch (may take a long time)
+      get_url: url={{ cuda_patch1_url }} dest=/root/{{ cuda_patch1_file }} force=no
+      register: get_cuda_patch1
+
+    - name: apply CUDA patch
+      shell: sh /root/{{ cuda_patch1_file }} --silent --accept-eula
+      when: get_cuda_patch1|changed
 
     - name: download cuDNN
-      get_url: url={{ cudnn_url }} dest=/root/{{ cudnn_file }} force=no mode=0644
+      get_url: url={{ cudnn_url }} dest=/root/{{ cudnn_file }} force=no
       register: get_cudnn
 
     - name: extract cuDNN
@@ -32,11 +35,11 @@
       when: get_cudnn|changed
 
     - name: copy cuDNN header file(s)
-      shell: cp /root/cuda/include/cudnn.h /usr/local/cuda/include/
+      shell: cp -d /root/cuda/include/cudnn.h /usr/local/cuda/include/
       when: get_cudnn|changed
 
     - name: copy cuDNN library files
-      shell: cp /root/cuda/lib64/libcudnn* /usr/local/cuda/lib64/
+      shell: cp -d /root/cuda/lib64/libcudnn* /usr/local/cuda/lib64/
       when: get_cudnn|changed
 
     - name: make sure cuDNN files have the right permissions
@@ -46,6 +49,9 @@
     - name: create CUDA_HOME and other variables
       template: src=cuda-home dest=/etc/profile.d/cuda-home.sh owner=root mode=0644
       when: get_cudnn|changed
+
+    - name: download and install the Nvidia driver and dependencies
+      apt: name={{ nvidia_driver }} state={{ package_state }}
 
     - name: install various useful libraries and packages
       apt: name={{ item }} state={{ package_state }}
