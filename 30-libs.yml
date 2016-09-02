@@ -53,3 +53,6 @@
         - Cython
         - h5py
         - Pillow
+        - six
+        - protobuf
+        - mock

@@ -4,9 +4,12 @@
   tasks:
     - include: checks.yml
 
-    - name: download TensorFlow
-      get_url: url=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl dest=/root/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl force=no mode=0644
+    - name: clone/update TensorFlow repository
+      git: repo=https://github.com/tensorflow/tensorflow dest=/tmp/tensorflow
       register: get_tensorflow
+
+    - name: stop here
+      fail: msg="stop"
 
     - name: install TensorFlow
       pip: name=/root/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl state={{ package_state }}
