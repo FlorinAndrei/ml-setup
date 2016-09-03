@@ -7,15 +7,17 @@
 # ~/.bash_profile in your account to define the variables used below.
 #
 ########################################
-
 package_state: "{{ lookup('env','ansible_package_state') }}"
-
 nvidia_driver: "{{ lookup('env','ansible_nvidia_driver') }}"
-
 main_user: "{{ lookup('env','ansible_main_user') }}"
-
 packages_folder: "{{ lookup('env','ansible_packages_folder') }}"
 
+########################################
+# Force this to "yes" in the command line if the big CUDA archives are downloaded already
+# and you want to trigger CUDA installation anyway
+# (otherwise CUDA installer won't trigger if archives exist in {{ packages_folder }})
+#
+# ansible-playbook -i inventory -e local_cache=yes main.yml
 local_cache: "no"
 
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
