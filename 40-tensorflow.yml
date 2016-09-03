@@ -4,6 +4,9 @@
   tasks:
     - include: checks.yml
 
+    - name: does {{ packages_folder }} exist
+      file: path={{ packages_folder }} state=directory
+
     - name: clone/update TensorFlow repository
       git: repo=https://github.com/tensorflow/tensorflow dest={{ packages_folder }}/tensorflow
       register: get_tensorflow

@@ -10,6 +10,9 @@
     - name: install the ubuntu-drivers-common package
       apt: name=ubuntu-drivers-common state={{ package_state }}
 
+    - name: does {{ packages_folder }} exist
+      file: path={{ packages_folder }} state=directory
+
     - name: download CUDA (may take a long time)
       get_url: url={{ cuda_url }} dest={{ packages_folder }}/{{ cuda_file }} force=no
       register: get_cuda
