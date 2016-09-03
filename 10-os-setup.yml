@@ -33,6 +33,7 @@
         - htop
         - mc
         - debconf-utils
+        - expect
     
     - name: autoremove unused packages
       shell: apt-get -y autoremove
