@@ -14,6 +14,8 @@ nvidia_driver: "{{ lookup('env','ansible_nvidia_driver') }}"
 
 main_user: "{{ lookup('env','ansible_main_user') }}"
 
+packages_folder: "{{ lookup('env','ansible_packages_folder') }}"
+
 final_msg: "{{ lookup('file', 'final_msg.txt') }}"
 
 os_distro_name: 'Ubuntu'
