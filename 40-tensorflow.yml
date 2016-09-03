@@ -1,6 +1,11 @@
 ---
 - hosts: all
   become: yes
+  # ugly hack to provide same environment as /etc/profile.d/cuda-home.sh
+  environment:
+    CUDA_HOME: "{{ cuda_home }}"
+    LD_LIBRARY_PATH: "{{ lookup('env', 'LD_LIBRARY_PATH') }}:{{ cuda_home }}/lib64"
+    PATH: "{{ cuda_home }}/bin:{{ lookup('env', 'PATH') }}"
   tasks:
     - include: checks.yml
 

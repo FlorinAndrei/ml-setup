@@ -31,3 +31,7 @@ cuda_patch1_url: "https://s3-us-west-1.amazonaws.com/florinandrei-ml-setup/{{ cu
 
 cudnn_file: "cudnn-8.0-linux-x64-v5.1.tgz"
 cudnn_url: "https://s3-us-west-1.amazonaws.com/florinandrei-ml-setup/{{ cudnn_file }}"
+
+cuda_home: '/usr/local/cuda'
+ld_library_path: '$LD_LIBRARY_PATH:$CUDA_HOME/lib64'
+path: '$CUDA_HOME/bin:$PATH'
