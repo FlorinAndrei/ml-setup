@@ -2,7 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  #config.vm.box = "ubuntu/xenial64"
+  # bug - can't mount shared folders
+  # https://bugs.launchpad.net/cloud-images/+bug/1565985
+  # use bento for now
+  config.vm.box = "bento/ubuntu-16.04"
   config.vm.box_check_update = false
   config.vm.hostname = "machine-learning"
 
