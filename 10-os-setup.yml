@@ -34,6 +34,7 @@
         - mc
         - debconf-utils
         - expect
+        - tree
     
     - name: autoremove unused packages
       shell: apt-get -y autoremove
