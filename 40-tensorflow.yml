@@ -12,20 +12,20 @@
     - name: does {{ packages_folder }} exist
       file: path={{ packages_folder }} state=directory
 
-#    - name: clone/update TensorFlow repository
-#      git: repo=https://github.com/tensorflow/tensorflow dest={{ packages_folder }}/tensorflow
-#      register: get_tensorflow
-
-#    - name: stop here
-#      fail: msg="stop"
-
-    - name: download TensorFlow
-      get_url: url=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl dest={{ packages_folder }}/tensorflow-0.10.0-cp27-none-linux_x86_64.whl force=no
+    - name: clone/update TensorFlow repository
+      git: repo=https://github.com/tensorflow/tensorflow dest={{ packages_folder }}/tensorflow
       register: get_tensorflow
 
-    - name: install TensorFlow
-      pip: name={{ packages_folder }}/tensorflow-0.10.0-cp27-none-linux_x86_64.whl state={{ package_state }}
-      when: get_tensorflow|changed or local_cache == 'yes'
+    - name: stop here
+      fail: msg="stop"
+
+#    - name: download TensorFlow
+#      get_url: url=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl dest={{ packages_folder }}/tensorflow-0.10.0-cp27-none-linux_x86_64.whl force=no
+#      register: get_tensorflow
+
+#    - name: install TensorFlow
+#      pip: name={{ packages_folder }}/tensorflow-0.10.0-cp27-none-linux_x86_64.whl state={{ package_state }}
+#      when: get_tensorflow|changed or local_cache == 'yes'
 
     - name: install extra libs for TF
       pip: name={{ item }} state={{ package_state }}
