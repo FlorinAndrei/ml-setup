@@ -35,6 +35,7 @@
         - debconf-utils
         - expect
         - tree
+        - gcc-4.9
     
     - name: autoremove unused packages
       shell: apt-get -y autoremove
