@@ -3,11 +3,6 @@
   become: yes
   tasks:
     - include: checks.yml
-    
-    - name: check if {{ main_user }} account is created
-      shell: /usr/bin/getent passwd {{ main_user }} | /usr/bin/wc -l | tr -d ' '
-      register: main_user_exists
-      failed_when: "'0' in main_user_exists.stdout"
 
     - name: install Theano
       pip: name=Theano state={{ package_state }}
