@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "machine-learning"
-    vb.memory = 4096
+    vb.memory = 8192
     vb.cpus = 4
     #vb.gui = true
   end
