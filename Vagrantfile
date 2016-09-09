@@ -18,6 +18,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
+    rm /etc/resolv.conf
+    ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
     apt-add-repository ppa:ansible/ansible
     apt-get update
     apt-get install -y ansible vim git
