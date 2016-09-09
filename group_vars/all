@@ -9,7 +9,6 @@
 ########################################
 package_state: "{{ lookup('env','ansible_package_state') }}"
 nvidia_driver: "{{ lookup('env','ansible_nvidia_driver') }}"
-main_user: "{{ lookup('env','ansible_main_user') }}"
 packages_folder: "{{ lookup('env','ansible_packages_folder') }}"
 
 ########################################
