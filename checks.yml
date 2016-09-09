@@ -5,4 +5,4 @@
 
 - name: stop if variables are undefined
   fail: msg='read bash_profile_example in this repo and edit your ~/.bash_profile per examples shown there'
-  when: package_state is undefined or package_state == '' or nvidia_driver is undefined or nvidia_driver == '' or main_user is undefined or main_user == '' or packages_folder is undefined or packages_folder == ''
+  when: package_state is undefined or package_state == '' or nvidia_driver is undefined or nvidia_driver == '' or packages_folder is undefined or packages_folder == ''
