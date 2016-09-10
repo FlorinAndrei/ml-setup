@@ -6,6 +6,12 @@ Copy/paste the contents of `bash_profile_example` into `~/.bash_profile` as the 
 
 Save your work, close all apps - if a kernel upgrade occurs during the process, your system **WILL REBOOT**.
 
+```
+apt-add-repository ppa:ansible/ansible
+apt-get update
+apt-get install ansible
+```
+
 Run the installer:
 
 ```
